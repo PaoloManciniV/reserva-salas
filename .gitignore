@@ -1,0 +1,11 @@
+# la lista negra de git lo que este aqui jamas se sube al repositorio
+
+# el config real con las claves de la base el correo y el cron
+config.php
+
+# lo que el sistema escribe solo
+data/correo.log.php
+
+# basura de windows y mac
+Thumbs.db
+.DS_Store

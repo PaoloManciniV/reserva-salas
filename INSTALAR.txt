@@ -1,0 +1,52 @@
+RESERVA DE SALAS DE REUNIONES — AGRO-COSTA
+Instalación (5 pasos, ~10 minutos)
+=====================================================
+
+1) SUBIR LA CARPETA
+   Sube la carpeta "salas" completa a public_html.
+   Queda en: https://agro-costa.com/salas/
+
+2) PHPMAILER — nada que hacer
+   Usa automáticamente el PHPMailer de /empleados/PHPMailer.
+   (Si algún día mueves empleados, copia esa carpeta PHPMailer
+   dentro de salas/ y listo.)
+
+3) BASE DE DATOS — nada que hacer
+   Usa la misma BD de RRHH (agrocosta_empleados).
+   La tabla `reservas_salas` se crea sola en el primer uso.
+   No toca las tablas de empleados.
+
+4) CRON DE RECORDATORIOS (cada 5 minutos)
+   cPanel > Trabajos de cron > agregar:
+
+      */5 * * * *  /usr/bin/php /home/TU_USUARIO/public_html/salas/cron.php
+
+   Si el hosting no deja ejecutar PHP por comando, usa la opción por URL:
+
+      */5 * * * *  curl -s "https://agro-costa.com/salas/cron.php?key=agc-recordatorios-2026-cambiame"
+
+   IMPORTANTE: cambia la clave 'cron_key' en config.php y usa la nueva en la URL.
+
+5) PROBAR
+   a. Abre https://agro-costa.com/salas/
+   b. Haz una reserva con tu correo real.
+   c. Deben llegar 2 correos: al que reservó (con .ics y botón de cancelar)
+      y a los encargados (jcastro y pmancini).
+   d. Prueba el botón "Cancelar esta reserva" del correo.
+   e. Para probar el recordatorio: reserva algo que empiece en menos de 1 hora
+      y ejecuta el cron a mano: https://agro-costa.com/salas/cron.php?key=TU_CLAVE
+
+-----------------------------------------------------
+TODO SE CONFIGURA EN config.php:
+   - Horarios, duración mínima/máxima, días hacia adelante
+   - Correos de los encargados
+   - Datos SMTP (hoy usa el mismo Zoho de empleados;
+     si creas reservas-agrocosta@zohomail.com, cámbialo ahí)
+
+REGISTRO DE CORREOS:
+   salas/data/correo.log.php  (se ve por FTP/Administrador de archivos;
+   por web no muestra nada, a propósito)
+
+PARA PONERLO EN LA PÁGINA:
+   Agrega en el menú o donde quieras un botón que diga
+   "Reserva salas de reuniones" apuntando a /salas/
