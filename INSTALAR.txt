@@ -31,7 +31,7 @@ Instalación (5 pasos, ~10 minutos)
    a. Abre https://agro-costa.com/salas/
    b. Haz una reserva con tu correo real.
    c. Deben llegar 2 correos: al que reservó (con .ics y botón de cancelar)
-      y a los encargados (jcastro y pmancini).
+      y a los encargados (sbarrios y pmancini).
    d. Prueba el botón "Cancelar esta reserva" del correo.
    e. Para probar el recordatorio: reserva algo que empiece en menos de 1 hora
       y ejecuta el cron a mano: https://agro-costa.com/salas/cron.php?key=TU_CLAVE
